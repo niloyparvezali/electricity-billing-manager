@@ -1196,7 +1196,6 @@ function Settings({ data, onSaved }) {
       <div className="settings-card backup-card">
         <div className="settings-card-head">
           <div><p className="eyebrow">BACKUP & RESTORE</p><h3>Protect your workspace</h3><p>Export a complete JSON backup or restore this account from a previous CurrentFlow backup.</p></div>
-          <div className="backup-icon">⇩</div>
         </div>
 
         <div className="backup-actions">
@@ -1211,27 +1210,8 @@ function Settings({ data, onSaved }) {
           />
         </div>
 
-        <div className={`restore-dropzone ${backupFile ? "ready" : ""}`} onClick={() => fileInputRef.current?.click()}>
-          <div className="restore-file-icon">{backupFile ? "✓" : "↑"}</div>
-          {backupFile
-            ? <><strong>{backupFile.name}</strong><span>Ready to restore · Click to choose another file</span></>
-            : <><strong>Restore from backup file</strong><span>Choose a .json backup exported by CurrentFlow</span></>}
-        </div>
-
         {restoreError && <div className="backup-error">{restoreError}</div>}
 
-        <button
-          className="restore-primary"
-          disabled={!backupFile || restoring}
-          onClick={restoreFromBackup}
-        >
-          {restoring ? "Restoring workspace…" : "Restore selected backup"}
-        </button>
-
-        <div className="settings-note">
-          Restoring replaces the current workspace data for this signed-in account. Your Firebase login is not changed.
-          The backup keeps record IDs so room, meter, reading, tenant, and calculation relationships stay connected.
-        </div>
       </div>
 
       <div className="settings-card danger-card">
